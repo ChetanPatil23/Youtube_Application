@@ -1,11 +1,29 @@
-import React from 'react'
+import React from "react";
+import Button from "./Button";
 
 const ButtonsList = () => {
+  let buttonList = [
+    "All",
+    "Gaming",
+    "Sports",
+    "News",
+    "Live",
+    "Music",
+    "Cooking",
+    "Trending",
+    "Gaming",
+    "Sports",
+    "News",
+    "Live",
+    "Music",
+  ];
   return (
-    <div>
-      <h1>ButtonsList</h1>
+    <div className="flex mb-8">
+      {buttonList.map((btn) => (
+        <Button name={btn} />
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default ButtonsList
+export default ButtonsList;
