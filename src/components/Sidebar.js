@@ -9,59 +9,68 @@ import {
 import { BiSolidVideos, BiSolidGame } from "react-icons/bi";
 import { MdOutlineSportsGymnastics } from "react-icons/md";
 import { IoLogoDesignernews, IoLogoHackernews } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 
 const Sidebar = () => {
   const { isMenuOpen } = useSelector((state) => state.app);
+  console.log(useMatch("/"));
+  const sidebarItems = [
+    { label: "Home", icon: <FaHouse />, path: "/" },
+    {
+      label: "Shorts",
+      icon: <BsFillLightningChargeFill />,
+      path: "/shorts",
+    },
+    { label: "Videos", icon: <BiSolidVideos />, path: "/videos" },
+    {
+      label: "Sports",
+      icon: <MdOutlineSportsGymnastics />,
+      path: "/sports",
+    },
+    { label: "Gaming", icon: <BiSolidGame />, path: "/gaming" },
+    { label: "News", icon: <IoLogoDesignernews />, path: "/news" },
+    {
+      label: "Trending",
+      icon: <BsFillAirplaneFill />,
+      path: "/trending",
+    },
+    { label: "Music", icon: <BsFillBookmarkFill />, path: "/music" },
+    { label: "Films", icon: <IoLogoHackernews />, path: "/films" },
+    {
+      label: "Sports",
+      icon: <MdOutlineSportsGymnastics />,
+      path: "/sports",
+    },
+    { label: "Gaming", icon: <BiSolidGame />, path: "/gaming" },
+    { label: "News", icon: <IoLogoDesignernews />, path: "/news" },
+  ];
   if (!isMenuOpen) return;
+  const SidebarItem = ({ item, index }) => {
+    const { path, icon, label } = item;
+    const isActive = useMatch(path);
+    return (
+      <>
+        <Link to={path}>
+          <li
+            className={`flex items-center px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-200 ${
+              isActive && "bg-gray-100"
+            } `}
+          >
+            {icon} <span className="ml-4">{label}</span>
+          </li>
+        </Link>
+        {(index + 1) % 3 == 0 && index + 1 !== sidebarItems.length && (
+          <hr className="my-3" />
+        )}
+      </>
+    );
+  };
   return (
     <div className="p-4 w-60 fixed top-16 h-screen left-0 bg-white">
       <ul className="pb-5">
-        <Link to="/">
-          <li className="flex items-center px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-200 active:bg-gray-300">
-            <FaHouse className="mr-4" /> Home
-          </li>
-        </Link>
-        <li className="flex items-center px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-200">
-          <BsFillLightningChargeFill className="mr-4" />
-          Shorts
-        </li>
-        <li className="flex items-center px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-200">
-          <BiSolidVideos className="mr-4" />
-          Videos
-        </li>
-      </ul>
-      <hr />
-      <h1 className="font-medium pt-5 mb-2 pl-2">Subscriptions</h1>
-      <ul className="pb-5">
-        <li className="flex items-center px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-200">
-          <MdOutlineSportsGymnastics className="mr-4" />
-          Sports
-        </li>
-        <li className="flex items-center px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-200">
-          <BiSolidGame className="mr-4" />
-          Gaming
-        </li>
-        <li className="flex items-center px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-200">
-          <IoLogoDesignernews className="mr-4" />
-          News
-        </li>
-      </ul>
-      <hr />
-      <h1 className="font-medium pt-5 mb-2 pl-2">Watch Later</h1>
-      <ul>
-        <li className="flex items-center px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-200">
-          <IoLogoHackernews className="mr-4" />
-          Sports
-        </li>
-        <li className="flex items-center px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-200">
-          <BsFillAirplaneFill className="mr-4" />
-          Gaming
-        </li>
-        <li className="flex items-center px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-200">
-          <BsFillBookmarkFill className="mr-4" />
-          News
-        </li>
+        {sidebarItems.map((item, index) => (
+          <SidebarItem key={index} index={index} item={item} />
+        ))}
       </ul>
     </div>
   );
