@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -8,7 +9,7 @@ const Header = () => {
     dispatch(toggleMenu());
   };
   return (
-    <div className="grid grid-flow-col py-4 px-6 mb-2 shadow-lg">
+    <div className="grid grid-flow-col py-4 px-6 mb-2 shadow-lg fixed top-0 w-full z-10 bg-white">
       <div className="flex col-span-1">
         <img
           className="h-8 cursor-pointer"
@@ -16,11 +17,11 @@ const Header = () => {
           src="https://cdn.icon-icons.com/icons2/2596/PNG/512/hamburger_button_menu_icon_155296.png"
           onClick={toggleMenuHandler}
         />
-        <img
-          className="h-8 ml-5"
-          alt="youtube_logo"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/1200px-YouTube_Logo_2017.svg.png"
-        />
+          <img
+            className="h-8 ml-5"
+            alt="youtube_logo"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/1200px-YouTube_Logo_2017.svg.png"
+          />
       </div>
       <div className="flex col-span-10 justify-center">
         <input

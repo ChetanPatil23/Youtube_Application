@@ -14,11 +14,10 @@ const ButtonsList = () => {
     "Gaming",
     "Sports",
     "News",
-    "Live",
-    "Music",
+    "Live"
   ];
   return (
-    <div className="flex mb-8">
+    <div className="flex mb-5">
       {buttonList.map((btn) => (
         <Button name={btn} />
       ))}

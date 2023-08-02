@@ -6,20 +6,22 @@ import {
   BsFillAirplaneFill,
   BsFillBookmarkFill,
 } from "react-icons/bs";
-import { BiSolidVideos } from "react-icons/bi";
+import { BiSolidVideos, BiSolidGame } from "react-icons/bi";
 import { MdOutlineSportsGymnastics } from "react-icons/md";
-import { BiSolidGame } from "react-icons/bi";
 import { IoLogoDesignernews, IoLogoHackernews } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const { isMenuOpen } = useSelector((state) => state.app);
   if (!isMenuOpen) return;
   return (
-    <div className="p-4 w-56">
+    <div className="p-4 w-60 fixed top-16 h-screen left-0 bg-white">
       <ul className="pb-5">
-        <li className="flex items-center px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-200 active:bg-gray-300">
-          <FaHouse className="mr-4" /> Home
-        </li>
+        <Link to="/">
+          <li className="flex items-center px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-200 active:bg-gray-300">
+            <FaHouse className="mr-4" /> Home
+          </li>
+        </Link>
         <li className="flex items-center px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-200">
           <BsFillLightningChargeFill className="mr-4" />
           Shorts
