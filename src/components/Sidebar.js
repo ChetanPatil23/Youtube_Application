@@ -1,56 +1,23 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { FaHouse } from "react-icons/fa6";
-import {
-  BsFillLightningChargeFill,
-  BsFillAirplaneFill,
-  BsFillBookmarkFill,
-} from "react-icons/bs";
-import { BiSolidVideos, BiSolidGame } from "react-icons/bi";
-import { MdOutlineSportsGymnastics } from "react-icons/md";
-import { IoLogoDesignernews, IoLogoHackernews } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useMatch } from "react-router-dom";
+import { setSearchedText } from "../utils/searchSlice";
+import { sidebarItems } from "../utils/constants";
 
 const Sidebar = () => {
   const { isMenuOpen } = useSelector((state) => state.app);
-  const sidebarItems = [
-    { label: "Home", icon: <FaHouse />, path: "/" },
-    {
-      label: "Shorts",
-      icon: <BsFillLightningChargeFill />,
-      path: "/shorts",
-    },
-    { label: "Videos", icon: <BiSolidVideos />, path: "/videos" },
-    {
-      label: "Sports",
-      icon: <MdOutlineSportsGymnastics />,
-      path: "/sports",
-    },
-    { label: "Gaming", icon: <BiSolidGame />, path: "/gaming" },
-    { label: "News", icon: <IoLogoDesignernews />, path: "/news" },
-    {
-      label: "Trending",
-      icon: <BsFillAirplaneFill />,
-      path: "/trending",
-    },
-    { label: "Music", icon: <BsFillBookmarkFill />, path: "/music" },
-    { label: "Films", icon: <IoLogoHackernews />, path: "/films" },
-    {
-      label: "Sports",
-      icon: <MdOutlineSportsGymnastics />,
-      path: "/sports",
-    },
-    { label: "Gaming", icon: <BiSolidGame />, path: "/gaming" },
-    { label: "News", icon: <IoLogoDesignernews />, path: "/news" },
-    { label: "Music", icon: <BsFillBookmarkFill />, path: "/music" },
-    { label: "Films", icon: <IoLogoHackernews />, path: "/films" },
-  ];
-
   if (!isMenuOpen) return;
 
   const SidebarItem = ({ item, index }) => {
     const { path, icon, label } = item;
     const isActive = useMatch(path);
+    const dispatch = useDispatch();
+
+    const handleItemClick = (label) => {
+      if (label === "Home") {
+        dispatch(setSearchedText(""));
+      }
+    };
     return (
       <>
         <Link to={path}>
@@ -58,6 +25,7 @@ const Sidebar = () => {
             className={`flex items-center px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-200 ${
               isActive && "bg-gray-100 font-semibold"
             } `}
+            onClick={() => handleItemClick(label)}
           >
             {icon} <span className="ml-4">{label}</span>
           </li>
