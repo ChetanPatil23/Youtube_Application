@@ -1,35 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useMatch } from "react-router-dom";
 import { setSearchedText } from "../utils/searchSlice";
 import { sidebarItems } from "../utils/constants";
 
 const Sidebar = () => {
   const { isMenuOpen } = useSelector((state) => state.app);
+  const [activeLink, setActiveLink] = useState("Home");
   if (!isMenuOpen) return;
 
   const SidebarItem = ({ item, index }) => {
-    const { path, icon, label } = item;
-    const isActive = useMatch(path);
+    const { icon, label } = item;
     const dispatch = useDispatch();
 
     const handleItemClick = (label) => {
+      setActiveLink(label);
       if (label === "Home") {
         dispatch(setSearchedText(""));
+        window.location.href = "/";
+        return;
       }
+      dispatch(setSearchedText(label));
     };
     return (
       <>
-        <Link to={path}>
-          <li
-            className={`flex items-center px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-200 ${
-              isActive && "bg-gray-100 font-semibold"
-            } `}
-            onClick={() => handleItemClick(label)}
-          >
-            {icon} <span className="ml-4">{label}</span>
-          </li>
-        </Link>
+        <li
+          className={`flex items-center px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-200 ${
+            activeLink === label && "bg-gray-100 font-semibold"
+          } `}
+          onClick={() => handleItemClick(label)}
+        >
+          {icon} <span className="ml-4">{label}</span>
+        </li>
         {(index + 1) % 3 == 0 && index + 1 !== sidebarItems.length && (
           <hr className="my-3" />
         )}

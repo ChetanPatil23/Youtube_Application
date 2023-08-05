@@ -13,8 +13,7 @@ const ButtonsList = () => {
     "Trending",
     "Gaming",
     "Sports",
-    "News",
-    "Live"
+    "Technology"
   ];
   return (
     <div className="flex mb-5">

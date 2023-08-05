@@ -1,6 +1,5 @@
 import "./App.css";
 import Body from "./components/Body";
-import Header from "./components/Header";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import WatchVideo from "./components/WatchVideo";
 import Main from "./components/Main";
@@ -18,7 +17,6 @@ const appRouter = createBrowserRouter([
 function App() {
   return (
     <div>
-      {/* <Header /> */}
       <RouterProvider router={appRouter} />
     </div>
   );

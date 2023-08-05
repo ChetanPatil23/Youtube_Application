@@ -17,7 +17,11 @@ const VideoCard = ({ info, id }) => {
     return views;
   };
   return (
-    <div className={`m-3 pb-2 ${isMenuOpen ? "w-80" : "w-[25rem]"} group`}>
+    <div
+      className={`m-3 pb-2 ${
+        isMenuOpen ? "w-80" : " h-[25rem] w-[25rem]"
+      } group`}
+    >
       <Link to={`/watch?v=${id}`}>
         <img
           className={`rounded-lg mb-2 transition-all duration-500 group-hover:rounded-none ${

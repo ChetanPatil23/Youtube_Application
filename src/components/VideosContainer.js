@@ -6,15 +6,12 @@ import { useSelector } from "react-redux";
 const VideosContainer = () => {
   const [videos, setVideos] = useState([]);
   const { searchText } = useSelector((state) => state.search);
-  console.log(searchText);
-  useEffect(() => {
-    fetchVideos(YOUTUBE_API);
-  }, []);
-
   useEffect(() => {
     if (searchText) {
       fetchVideos(YOUTUBE_SEARCH_API + searchText);
+      return;
     }
+    fetchVideos(YOUTUBE_API);
   }, [searchText]);
   const fetchVideos = async (url) => {
     const response = await fetch(url);
