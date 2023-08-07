@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { closeMenu } from "../utils/appSlice";
+import { closeMenu } from "../slices/appSlice";
 import { useSearchParams } from "react-router-dom";
 
 const WatchVideo = () => {

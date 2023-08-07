@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleMenu } from "../utils/appSlice";
+import { toggleMenu } from "../slices/appSlice";
 import { YOUTUBE_SUGGESTIONS_API } from "../utils/constants";
 import { FiSearch } from "react-icons/fi";
-import { setSearchedText } from "../utils/searchSlice";
-import { setCachedResults } from "../utils/searchSlice";
+import { setSearchedText } from "../slices/searchSlice";
+import { setCachedResults } from "../slices/searchSlice";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {

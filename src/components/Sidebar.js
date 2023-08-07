@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchedText } from "../utils/searchSlice";
-import { sidebarItems } from "../utils/constants";
+import { setSearchedText } from "../slices/searchSlice";
+import { sidebarItems } from "../utils/util";
 
 const Sidebar = () => {
   const { isMenuOpen } = useSelector((state) => state.app);

@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { formatViews } from "../utils/util";
 
 const VideoCard = ({ info, id }) => {
   const { isMenuOpen } = useSelector((state) => state.app);
@@ -8,14 +9,7 @@ const VideoCard = ({ info, id }) => {
   const { snippet, statistics = { viewCount: "25633378" } } = info;
   const { title, channelTitle, thumbnails } = snippet;
   const { viewCount } = statistics;
-  const formatViews = (views) => {
-    if (views >= 100000) {
-      return (views / 100000).toFixed(1) + " lakh";
-    } else if (views > 1000) {
-      return (views / 1000).toFixed(0) + "K";
-    }
-    return views;
-  };
+
   return (
     <div
       className={`m-3 pb-2 ${
