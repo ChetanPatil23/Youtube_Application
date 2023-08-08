@@ -13,7 +13,7 @@ const VideoCard = ({ info, id }) => {
   return (
     <div
       className={`m-3 pb-2 ${
-        isMenuOpen ? "w-80" : " h-[25rem] w-[25rem]"
+        isMenuOpen ? "w-80" : "max-h-[14rem] w-[25rem]"
       } group`}
     >
       <Link to={`/watch?v=${id}`}>
