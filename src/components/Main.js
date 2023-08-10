@@ -1,6 +1,6 @@
 import React from "react";
-import ButtonsList from "./ButtonsList";
-import VideosContainer from "./VideosContainer";
+import ButtonsList from "./buttonList/ButtonsList";
+import VideosContainer from "./videosContainer/VideosContainer";
 import { useSelector } from "react-redux";
 
 const Main = () => {

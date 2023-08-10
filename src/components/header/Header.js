@@ -1,39 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { toggleMenu } from "../slices/appSlice";
-import { YOUTUBE_SUGGESTIONS_API } from "../utils/constants";
-import { FiSearch } from "react-icons/fi";
-import { setSearchedText } from "../slices/searchSlice";
-import { setCachedResults } from "../slices/searchSlice";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { toggleMenu } from "../../slices/appSlice";
+import { setSearchedText } from "../../slices/searchSlice";
 import { useNavigate } from "react-router-dom";
+import Suggestions from "./Suggestions";
 
 const Header = () => {
   const [searchText, setSearchText] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const { cachedResults } = useSelector((state) => state.search);
-  console.log({ cachedResults });
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  useEffect(() => {
-    if (cachedResults[searchText]) {
-      setSuggestions(cachedResults[searchText]);
-      return;
-    }
-    const timer = setTimeout(() => fetchAutoSuggestions(), 200);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [searchText]);
 
-  const fetchAutoSuggestions = async () => {
-    if (searchText) {
-      const response = await fetch(YOUTUBE_SUGGESTIONS_API + searchText);
-      const data = await response.json();
-      setSuggestions(data[1]);
-      dispatch(setCachedResults({ [searchText]: data[1] }));
-    }
-  };
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
   };
@@ -43,11 +20,7 @@ const Header = () => {
       setShowSuggestions(false);
     }
   };
-  const handleSuggestionClick = (suggestion) => {
-    setSearchText(suggestion);
-    dispatch(setSearchedText(suggestion));
-    setShowSuggestions(false);
-  };
+
   return (
     <div className="grid grid-flow-col py-4 px-6 mb-2 shadow-lg fixed top-0 w-full z-10 bg-white">
       <div className="flex col-span-1">
@@ -85,23 +58,15 @@ const Header = () => {
           src="https://static.thenounproject.com/png/3184147-200.png"
           onClick={() => {
             dispatch(setSearchedText(searchText));
+            setShowSuggestions(false);
           }}
         />
-        {suggestions.length > 0 && showSuggestions && (
-          <div className="bg-white w-[29.3rem] py-2 top-8 absolute left-[12.7rem] rounded-lg border border-gray-100">
-            <ul>
-              {suggestions.map((suggestion, i) => (
-                <li
-                  className="hover:bg-slate-200 px-6 py-0.5 cursor-pointer flex items-center"
-                  key={i}
-                  onClick={() => handleSuggestionClick(suggestion)}
-                >
-                  <FiSearch className="mr-2" /> {suggestion}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <Suggestions
+          searchText={searchText}
+          setSearchText={setSearchText}
+          showSuggestions={showSuggestions}
+          setShowSuggestions={setShowSuggestions}
+        />
       </div>
       <div className="flex col-span-1 justify-end">
         <img

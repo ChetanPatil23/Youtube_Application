@@ -1,7 +1,7 @@
 import "./App.css";
 import Body from "./components/Body";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import WatchVideo from "./components/WatchVideo";
+import WatchVideo from "./components/watchVideo/WatchVideo";
 import Main from "./components/Main";
 
 const appRouter = createBrowserRouter([

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { closeMenu } from "../slices/appSlice";
+import { closeMenu } from "../../slices/appSlice";
 import { useSearchParams } from "react-router-dom";
-import { YOUTUBE_GET_SINGLE_VIDEO_API } from "../utils/constants";
+import { YOUTUBE_GET_SINGLE_VIDEO_API } from "../../utils/constants";
 import VideoInfo from "./VideoInfo";
 
 const WatchVideo = () => {

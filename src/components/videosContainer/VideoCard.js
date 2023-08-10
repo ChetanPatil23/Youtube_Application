@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { formatViews } from "../utils/util";
+import { formatViews } from "../../utils/util";
 
 const VideoCard = ({ info, id }) => {
   const { isMenuOpen } = useSelector((state) => state.app);
@@ -11,15 +11,11 @@ const VideoCard = ({ info, id }) => {
   const { viewCount } = statistics;
 
   return (
-    <div
-      className={`m-3 pb-2 ${
-        isMenuOpen ? "w-80" : "max-h-[14rem] w-[25rem]"
-      } group`}
-    >
+    <div className={`m-3 pb-2 ${isMenuOpen ? "w-80" : "w-[25rem]"} group`}>
       <Link to={`/watch?v=${id}`}>
         <img
           className={`rounded-lg mb-2 transition-all duration-500 group-hover:rounded-none ${
-            isMenuOpen && "max-h-[11.3rem]"
+            isMenuOpen ? "max-h-[11.3rem]" : "h-[14rem]"
           }`}
           src={thumbnails.medium.url}
           alt={title}

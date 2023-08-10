@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "./Button";
-import { buttonList } from "../utils/util";
+import { buttonList } from "../../utils/util";
 
 const ButtonsList = () => {
   return (
