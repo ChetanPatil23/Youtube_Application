@@ -3,6 +3,9 @@ import { formatViews } from "../../utils/util";
 import { BiLike } from "react-icons/bi";
 import { PiShareFat } from "react-icons/pi";
 import { FiCheckCircle } from "react-icons/fi";
+import { BsFillEyeFill } from "react-icons/bs";
+import { FaCalendarDay } from "react-icons/fa";
+import { formatDistanceToNow } from "date-fns";
 
 const VideoInfo = ({ video }) => {
   const { snippet, statistics } = video;
@@ -10,6 +13,8 @@ const VideoInfo = ({ video }) => {
   const { viewCount, likeCount, commentCount } = statistics;
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
+  const publishedDate = new Date(publishedAt);
+  const timeAgo = formatDistanceToNow(publishedDate, { addSuffix: true });
   return (
     <div className="mt-3 w-[57rem]">
       <h2 className="text-xl font-semibold">{title}</h2>
@@ -44,13 +49,21 @@ const VideoInfo = ({ video }) => {
         </div>
       </div>
       <div
-        className="rounded-lg bg-gray-200 hover:bg-gray-300 p-2 my-2 cursor-pointer"
+        className="rounded-lg bg-gray-100 hover:bg-gray-200 p-2 my-2 cursor-pointer"
         onClick={() => setShowFullDescription(!showFullDescription)}
       >
-        <span className="font-medium">{formatViews(viewCount)} views</span>
-        <span className="mx-2 font-medium">19 hours ago</span>
+        <div className="flex items-center">
+          <span className="mx-1">
+            <BsFillEyeFill />
+          </span>
+          <span className="font-medium">{formatViews(viewCount)} views</span>
+          <span className="mr-1 ml-3">
+            <FaCalendarDay />
+          </span>
+          <span className="font-medium">{timeAgo}</span>
+        </div>
         {description && (
-          <p>
+          <p className="mt-2">
             {showFullDescription
               ? description
               : description.slice(0, 200) + "..."}

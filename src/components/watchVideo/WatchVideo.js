@@ -26,8 +26,6 @@ const WatchVideo = () => {
     setVideo(data.items[0]);
   };
 
-  console.log(video, "single");
-
   return (
     <div className="flex flex-col m-6">
       <div className={`w-[57rem] h-[28rem]`}>
