@@ -10,7 +10,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className="p-4 w-60 fixed top-16 h-screen left-0 bg-white overflow-y-hidden hover:overflow-y-auto mt-2"
+      className="p-4 w-60 fixed top-16 h-screen left-0 bg-white overflow-y-hidden hover:overflow-y-auto"
       style={{ maxHeight: "560px" }}
     >
       <ul className="pb-5">

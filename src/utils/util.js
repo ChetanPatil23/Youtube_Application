@@ -48,14 +48,17 @@ export const sidebarItems = [
 
 export const buttonList = [
   "All",
-  "Gaming",
-  "Sports",
-  "News",
-  "Live",
+  "TED",
+  "Motivation",
+  "Latest",
+  "Funny",
+  "Cricket",
+  "React",
   "Music",
   "Cooking",
-  "Trending",
+  "Nature",
   "Gaming",
-  "Sports",
+  "Sportsmanship",
+  "Romantic",
   "Technology",
 ];
