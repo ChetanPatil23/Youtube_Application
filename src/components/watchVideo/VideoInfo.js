@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { formatViews } from "../../utils/util";
+import { formatCount } from "../../utils/util";
 import { BiLike } from "react-icons/bi";
 import { PiShareFat } from "react-icons/pi";
 import { FiCheckCircle } from "react-icons/fi";
 import { BsFillEyeFill } from "react-icons/bs";
 import { FaCalendarDay } from "react-icons/fa";
 import { formatDistanceToNow } from "date-fns";
+import CommentsContainer from "../comments/CommentsContainer";
 
 const VideoInfo = ({ video }) => {
   const { snippet, statistics } = video;
@@ -40,7 +41,7 @@ const VideoInfo = ({ video }) => {
         <div className="flex items-center">
           <button className="rounded-2xl py-1 px-3 bg-gray-200 hover:bg-gray-300 flex items-center font-medium">
             <BiLike className="mr-2" />
-            {formatViews(likeCount)}
+            {formatCount(likeCount)}
           </button>
           <button className="flex items-center ml-3 rounded-2xl py-1 px-3 bg-gray-200 hover:bg-gray-300 font-medium">
             <PiShareFat className="mr-2" />
@@ -56,7 +57,7 @@ const VideoInfo = ({ video }) => {
           <span className="mx-1">
             <BsFillEyeFill />
           </span>
-          <span className="font-medium">{formatViews(viewCount)} views</span>
+          <span className="font-medium">{formatCount(viewCount)} views</span>
           <span className="mr-1 ml-3">
             <FaCalendarDay />
           </span>
@@ -73,6 +74,7 @@ const VideoInfo = ({ video }) => {
           </p>
         )}
       </div>
+      <CommentsContainer commentCount={commentCount} />
     </div>
   );
 };

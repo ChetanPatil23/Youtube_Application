@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { formatViews } from "../../utils/util";
+import { formatCount } from "../../utils/util";
 
 const VideoCard = ({ info, id }) => {
   const { isMenuOpen } = useSelector((state) => state.app);
   //Static viewCount value will be taken if statistics is missing in API
-  const { snippet, statistics = { viewCount: "25633378" } } = info;
+  const { snippet, statistics = { viewCount: "2563337" } } = info;
   const { title, channelTitle, thumbnails } = snippet;
   const { viewCount } = statistics;
 
@@ -27,7 +27,7 @@ const VideoCard = ({ info, id }) => {
           </h3>
           <h3 className="text-slate-500">{channelTitle}</h3>
           <h3 className="text-slate-500">
-            {formatViews(Number(viewCount))} views
+            {formatCount(Number(viewCount))} views
           </h3>
         </div>
       </Link>

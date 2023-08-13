@@ -3,6 +3,7 @@ import { FiSearch } from "react-icons/fi";
 import { setCachedResults, setSearchedText } from "../../slices/searchSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { YOUTUBE_SUGGESTIONS_API } from "../../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 const Suggestions = ({
   searchText,
@@ -11,6 +12,7 @@ const Suggestions = ({
   setShowSuggestions,
 }) => {
   const [suggestions, setSuggestions] = useState([]);
+  const navigate = useNavigate();
   const { cachedResults } = useSelector((state) => state.search);
   const dispatch = useDispatch();
 
@@ -35,6 +37,7 @@ const Suggestions = ({
   };
 
   const handleSuggestionClick = (suggestion) => {
+    navigate("/");
     setSearchText(suggestion);
     dispatch(setSearchedText(suggestion));
     setShowSuggestions(false);

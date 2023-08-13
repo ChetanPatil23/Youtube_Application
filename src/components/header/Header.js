@@ -16,6 +16,7 @@ const Header = () => {
   };
   const handleEnterPress = (e) => {
     if (e.key === "Enter" && searchText) {
+      navigate("/");
       dispatch(setSearchedText(searchText));
       setShowSuggestions(false);
     }

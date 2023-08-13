@@ -8,7 +8,7 @@ import { BiSolidVideos, BiSolidGame } from "react-icons/bi";
 import { MdOutlineSportsGymnastics } from "react-icons/md";
 import { IoLogoDesignernews, IoLogoHackernews } from "react-icons/io";
 
-export const formatViews = (views) => {
+export const formatCount = (views) => {
   if (views >= 100000) {
     return parseFloat((views / 100000).toFixed(1)) + " lakh";
   } else if (views > 1000) {
@@ -58,7 +58,7 @@ export const buttonList = [
   "Cooking",
   "Nature",
   "Gaming",
-  "Sportsmanship",
+  "Sports",
   "Romantic",
   "Technology",
 ];
