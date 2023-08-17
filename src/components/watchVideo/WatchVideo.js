@@ -4,27 +4,20 @@ import { closeMenu } from "../../slices/appSlice";
 import { useSearchParams } from "react-router-dom";
 import { YOUTUBE_GET_SINGLE_VIDEO_API } from "../../utils/constants";
 import VideoInfo from "./VideoInfo";
+import useFetch from "../../hooks/useFetch";
 
 const WatchVideo = () => {
-  const [video, setVideo] = useState(null);
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
+  const { data: video, isLoading } = useFetch(
+    YOUTUBE_GET_SINGLE_VIDEO_API + searchParams.get("v")
+  );
 
   useEffect(() => {
     dispatch(closeMenu());
   }, []);
 
-  useEffect(() => {
-    fetchVideoByID();
-  }, [searchParams]);
-
-  const fetchVideoByID = async () => {
-    const response = await fetch(
-      YOUTUBE_GET_SINGLE_VIDEO_API + searchParams.get("v")
-    );
-    const data = await response.json();
-    setVideo(data.items[0]);
-  };
+  if (isLoading) return <h1>Loading...</h1>;
 
   return (
     <div className="flex flex-col m-6">
@@ -40,7 +33,7 @@ const WatchVideo = () => {
           allowFullScreen
         ></iframe>
       </div>
-      {video && <VideoInfo video={video} />}
+      {video && <VideoInfo video={video[0]} />}
     </div>
   );
 };

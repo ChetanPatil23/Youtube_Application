@@ -3,31 +3,20 @@ import { YOUTUBE_API, YOUTUBE_SEARCH_API } from "../../utils/constants";
 import VideoCard from "./VideoCard";
 import { useSelector } from "react-redux";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
+import useFetch from "../../hooks/useFetch";
 
 const VideosContainer = () => {
-  const [videos, setVideos] = useState([]);
-  const [isScrollVisible, setIsScrollVisible] = useState(false);
   const { searchText } = useSelector((state) => state.search);
-
-  useEffect(() => {
-    if (searchText) {
-      fetchVideos(YOUTUBE_SEARCH_API + searchText);
-      return;
-    }
-    fetchVideos(YOUTUBE_API);
-  }, [searchText]);
+  let url = searchText ? YOUTUBE_SEARCH_API + searchText : YOUTUBE_API;
+  const { data: videos, isLoading } = useFetch(url);
+  const [isScrollVisible, setIsScrollVisible] = useState(false);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const fetchVideos = async (url) => {
-    const response = await fetch(url);
-    const data = await response.json();
-    setVideos(data.items);
-    window.scrollTo(0, 0);
-  };
+  if (isLoading) return <h1>Loading</h1>;
 
   const handleScroll = () => {
     const scrollHeight = document.documentElement.scrollHeight;
@@ -47,7 +36,7 @@ const VideosContainer = () => {
 
   return (
     <div className="flex flex-wrap" id="videosContainer">
-      {videos.map((video) => (
+      {videos?.map((video) => (
         <VideoCard
           key={video.id}
           info={video}
