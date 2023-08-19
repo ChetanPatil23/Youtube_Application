@@ -4,6 +4,7 @@ import VideoCard from "./VideoCard";
 import { useSelector } from "react-redux";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import useFetch from "../../hooks/useFetch";
+import VideoShimmer from "../shimmer/VideoShimmer";
 
 const VideosContainer = () => {
   const { searchText } = useSelector((state) => state.search);
@@ -16,7 +17,14 @@ const VideosContainer = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (isLoading) return <h1>Loading</h1>;
+  if (isLoading)
+    return (
+      <div className="flex flex-wrap" id="videosContainer">
+        {Array.from({ length: 12 }).map((_, index) => (
+          <VideoShimmer key={index} />
+        ))}
+      </div>
+    );
 
   const handleScroll = () => {
     const scrollHeight = document.documentElement.scrollHeight;

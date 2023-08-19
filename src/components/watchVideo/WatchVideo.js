@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { closeMenu } from "../../slices/appSlice";
 import { useSearchParams } from "react-router-dom";
 import { YOUTUBE_GET_SINGLE_VIDEO_API } from "../../utils/constants";
 import VideoInfo from "./VideoInfo";
 import useFetch from "../../hooks/useFetch";
+import Spinner from "../loader/Spinner";
 
 const WatchVideo = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,14 @@ const WatchVideo = () => {
     dispatch(closeMenu());
   }, []);
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading)
+    return (
+      <div
+        className={`w-[57rem] h-[28rem] flex align-center justify-center m-6`}
+      >
+        <Spinner />
+      </div>
+    );
 
   return (
     <div className="flex flex-col m-6">

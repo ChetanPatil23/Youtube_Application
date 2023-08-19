@@ -13,11 +13,12 @@ const SidebarItem = ({ item, index, activeLink, setActiveLink }) => {
     setActiveLink(label);
     if (label === "Home") {
       dispatch(setSearchedText(""));
-      window.location.href = "/";
+      navigate("/")
       return;
     }
     dispatch(setSearchedText(label));
     navigate("/");
+    window.scrollTo(0,0);
   };
 
   return (
