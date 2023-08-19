@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setSearchedText } from "../../slices/searchSlice";
-import { sidebarItems } from "../../utils/util";
+import { sidebarItems } from "./sidebarList";
 
 const SidebarItem = ({ item, index, activeLink, setActiveLink }) => {
   const { icon, label } = item;

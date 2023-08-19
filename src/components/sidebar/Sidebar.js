@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { sidebarItems } from "../../utils/util";
+import { sidebarItems } from "./sidebarList";
 import SidebarItem from "./SidebarItem";
 
 const Sidebar = () => {
