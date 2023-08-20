@@ -5,9 +5,9 @@ import { BiDislike } from "react-icons/bi";
 const Comment = ({ comment }) => {
   const { name, text, replies } = comment;
   return (
-    <div className="flex my-2 p-2">
+    <div className="flex my-2 p-2 hover:bg-slate-100 rounded-lg">
       <img
-        className="h-8 mr-5 my-1"
+        className="h-8 mr-3 my-1"
         alt="user_icon"
         src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
       />
