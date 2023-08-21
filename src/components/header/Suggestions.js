@@ -33,6 +33,7 @@ const Suggestions = ({
       const data = await response.json();
       setSuggestions(data[1]);
       dispatch(setCachedResults({ [searchText]: data[1] }));
+      window.scrollTo(0, 0);
     }
   };
 

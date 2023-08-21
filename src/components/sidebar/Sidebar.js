@@ -11,7 +11,7 @@ const Sidebar = () => {
   return (
     <div
       className="p-4 w-60 fixed top-16 h-screen left-0 bg-white overflow-y-hidden hover:overflow-y-auto"
-      style={{ maxHeight: "560px" }}
+      style={{ maxHeight: "600px" }}
     >
       <ul className="pb-5">
         {sidebarItems.map((item, index) => (
