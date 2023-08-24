@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { YOUTUBE_API, YOUTUBE_SEARCH_API } from "../../utils/constants";
 import VideoCard from "./VideoCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import useFetch from "../../hooks/useFetch";
 import VideoShimmer from "../shimmer/VideoShimmer";
+import { clearMessages } from "../../slices/chatSlice";
 
 const VideosContainer = () => {
+  const dispatch = useDispatch()
   const { searchText } = useSelector((state) => state.search);
   let url = searchText ? YOUTUBE_SEARCH_API + searchText : YOUTUBE_API;
   const { data: videos, isLoading } = useFetch(url);
   const [isScrollVisible, setIsScrollVisible] = useState(false);
 
   useEffect(() => {
+    dispatch(clearMessages());
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
