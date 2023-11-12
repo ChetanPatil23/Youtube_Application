@@ -44,7 +44,7 @@ const Header = () => {
       <div className="flex col-span-10 justify-center relative">
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Search..."
           className=" w-1/2 px-6 focus:outline-none border border-gray-300 border-r-0 rounded-l-full"
           value={searchText}
           onChange={(e) => {
